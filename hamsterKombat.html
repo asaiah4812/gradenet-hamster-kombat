@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="font/css/all.min.css">
+    <link rel="stylesheet" href="font/css/fontawesome.min.css">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        overflow: hidden;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+    }
+
+    .main{
+        width: 22rem;
+        height: 50rem;
+        border-radius: 20px;
+        background: slategray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .oga{
+        background: black;
+        border-radius: 15px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .coin{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+    }
+    .coin span{
+        width: 40px;
+        height: 40px;
+        background: goldenrod;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: solid 5px gold;
+    }
+    .coin h3{
+        color: white;
+        font-size: 30px;
+    }
+    span{
+        color: white;
+    }
+    .divider{
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+    }
+    .level{
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .range{
+        background: #333;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+    .range div{
+        /* width: 20%; */
+        height: 10px;
+        border-radius: 10px;
+        background: linear-gradient(to right, rgb(16, 180, 180), rgb(182, 63, 182), rgb(103, 103, 230));
+    }
+
+    .kombat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        margin: 6rem auto;
+        padding: 15px;
+        background: rgb(23, 14, 31);
+        border-radius: 50%;
+        border-style:inset;
+        cursor: pointer;
+        transition: ease 0.2s all;
+        border: solid 3px linear-gradient(to right, rgb(16, 180, 180), rgb(182, 63, 182), rgb(103, 103, 230));
+    }
+    .kombat:hover{
+        transform: scale(1.1);
+    }
+
+    .kombat img{
+        width: 95%;
+        border-radius: 50%;
+    }
+    .kombat.active {
+    transform: scale(1.2); /* Slight zoom */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Glowing effect */
+    background: linear-gradient(to right, rgb(182, 63, 182), rgb(103, 103, 230)); /* Add a gradient background */
+    transition: ease 0.2s all;
+}
+.floating-number {
+    position: absolute;
+    color: #00ff00; /* Green text */
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: floatUp 1s ease-out forwards;
+    pointer-events: none; /* Ensure it doesn't interfere with other interactions */
+}
+
+.width{
+    width: 90%;
+    margin: 0 auto;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.kombat{
+    color: white;
+}
+</style>
+<body>
+    <section class="container">
+        <div class="main">
+            <div class="oga">
+                <div class="coin">
+                    <span>
+                        <i class="fa fa-dollar" style="color: aliceblue;"></i>
+                    </span>
+                    <h3 id="coin">10,112</h3>
+                </div>
+                <div class="divider">
+                    <div class="level">
+                        <span>Gold ➡️</span>
+                        <span><small>Level</small> 5/10</span>
+                    </div>
+                    <div class="range">
+                        <div class="div"></div>
+                    </div>
+                </div>
+                <div class="kombat" onclick="hamsterCombat()">
+                    <img src="/kombat.png" alt="">
+                </div>
+                <div class="level width">
+                    <span><small>🏅</small> 5/1000</span>
+                    <span>🚀 Boost</span>
+                </div>
+                <div class="kombat">
+                    <h3>Dreamster Kombat</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        const levelElement = document.querySelector('.div');
+        const currentLevel = 5; // Dynamically update this
+        const maxLevel = 10; // Dynamically update this
+        levelElement.style.width = `${(currentLevel / maxLevel) * 100}%`;
+        let coin = document.getElementById('coin')
+        let num = parseInt(coin.innerText.replace(',', ''), 10);
+        function hamsterCombat() {
+        num += 100;
+        coin.innerText = num.toLocaleString();
+
+        // Create the floating number element
+        const floatingNum = document.createElement('div');
+        floatingNum.innerText = '+100';
+        floatingNum.className = 'floating-number';
+        document.body.appendChild(floatingNum);
+
+        // Position it near the combat button
+        const combatButton = document.querySelector('.kombat');
+        const rect = combatButton.getBoundingClientRect();
+        floatingNum.style.left = `${rect.left + rect.width / 2}px`;
+        floatingNum.style.top = `${rect.top}px`;
+
+        // Remove the floating number after animation
+        setTimeout(() => floatingNum.remove(), 1000);
+}
+    </script>
+</body>
+</html>

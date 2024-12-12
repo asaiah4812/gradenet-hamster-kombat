@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>hamsterCombat</title>
+</head>
+<body>
+    <section class="container">
+        <div class="main">
+            <div class="egungu">
+                <div class="coin">
+                    <span><strike>N</strike></span>
+                    <h2 id="coin">10,000</h2>
+                </div>
+                <div class="divider">
+                    <!-- first div -->
+                    <div class="gold">
+                        <span>Gold ➡️</span>
+                        <span>Level 5/10</span>
+                    </div>
+                    
+                    <!-- second div -->
+                    <div class="range">
+                        <div></div>
+                    </div>
+
+                </div>
+                <div class="hamster" onclick="hamsterKombat()">
+                    <img src="/kombat.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let coin = document.getElementById('coin')
+        let number = 1000
+        function hamsterKombat(){
+            number = number + 100
+            coin.innerText = number
+        }
+    </script>
+</body>
+</html>

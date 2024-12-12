@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="number" type="number" placeholder="Enter year or age"> <button onclick="AgeCal()">Calculate</button>
+    <span id="age"></span>
+    <script>
+        let number = document.getElementById('number')
+        let age = document.getElementById('age')
+        function AgeCal(){
+            let year = 2024
+            age.innerHTML = year - number.value
+        }
+
+    </script>
+</body>
+</html>
